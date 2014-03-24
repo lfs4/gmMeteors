@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes');
 var users = require('./routes/user');
 
+var calc = require('./public/javascripts/calculate');
+
 var app = express();
 
 // view engine setup
@@ -26,6 +28,22 @@ app.use(app.router);
 
 app.get('/', routes.index);
 app.get('/users', users.list);
+
+app.get('/newApp', function(req,res,next){
+    res.send({name: "Lou", message: "why am i still alive"});
+    // res.render('index',{title: 'Butts'});
+});
+app.get('/testing', function(req,res,next){
+    res.send({name: "test", 
+        add: calc.calculate(4,5,"+"),
+        subtract : calc.calculate(10, 5, "-"),
+        divide: calc.calculate(20, 10, "/"),
+        multiply: calc.calculate(5, 4, "*")
+    });
+
+});
+
+app.get('/calculator', routes.calculator);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
