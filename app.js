@@ -45,6 +45,15 @@ app.get('/testing', function(req,res,next){
 
 app.get('/calculator', routes.calculator);
 
+app.post('/doCalc', function(req,res,next){
+    var num1 = +req.body['num1'];
+    var num2 = +req.body['num2'];
+
+    var resultSet = calc.calculate(num1,num2,"+");
+
+    res.send("Result Set: " + resultSet);
+});
+// app.post('/doCalc', routes.calculate)
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

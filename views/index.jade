@@ -1,1 +1,14 @@
-h1 hi
+extends layout
+
+block content
+   h1= title
+   form(action='/doCalc', method='post')
+   p
+     label Number 1
+     input(type= 'number', name='num1')
+   p
+     label Number 2
+     input(type='number', name='num2')
+
+   p 
+    input(type='submit')
