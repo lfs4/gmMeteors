@@ -14,7 +14,8 @@ exports.calculate = function(req,res){
     var operand = req.body['operand'];
    var calc = require('../public/javascripts/calculate');
     var resultSet = calc.calculate(num1,num2,operand);
-    res.send("Result Set: " + resultSet);
+    // res.send("Result Set: " + resultSet);
+    res.render('calculator', {title: "Calculator", result: resultSet});
 
 };
 

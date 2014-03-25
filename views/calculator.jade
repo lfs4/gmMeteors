@@ -2,7 +2,8 @@ extends layout
 
 block content
  h1= title
- form(action='/doCalc', method='post')
+ p= result
+ form(action='/calculator', method='post')
   p
    label Number 1
    input(type= 'number', name='num1')
