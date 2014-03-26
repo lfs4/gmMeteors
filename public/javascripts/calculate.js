@@ -12,3 +12,4 @@ exports.calculate = function(num1,num2,operand){
 		num = calc.multiply(num1, num2);
 	return num;
 }
+
