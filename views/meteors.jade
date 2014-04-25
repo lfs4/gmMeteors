@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  ul
+   each meteor in meteors
+    li= meteor.name
+     ul
+      li
+       | Year: #{meteor.year}
+      li
+       | Lat: #{meteor.latitude}
+      li
+       | Long: #{meteor.longitude}
+      li
+       | Class: #{meteor.classification}
