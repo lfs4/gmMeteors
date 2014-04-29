@@ -2,6 +2,13 @@ extends layout
 
 block content
   h1= title
+  form(action='/meteors', method='post')
+   p
+    label Search
+    br
+    input(type ='range', name='year' min="1800" max="2013")
+    br
+    input(type='submit')
   ul
    each meteor in meteors
     li= meteor.name

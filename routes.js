@@ -17,6 +17,8 @@ app.get('/meteors', meteors.findMeteors);
 app.get('/cars', cars.displayCar);
 app.get('/factory', fact.displayVehicle);
 
+app.post('/meteors', meteors.findMeteors);
+
 var factory = new Factory();
 
 var myTruck = factory.createVehicle({
