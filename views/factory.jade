@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  ul
+   li
+    | Model: #{vehicle.model}
+   li
+    | Year: #{vehicle.year}
+   li
+    | Miles: #{vehicle.miles}
+  p
+   | This #{vehicle.mySpecs()}
