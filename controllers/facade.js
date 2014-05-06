@@ -22,17 +22,20 @@ function addCarList(car)
 	}
 	
 }
-exports.decorateCar = function(car)
-{
+function decorateCar(car){
+
 	addEngineType(car);
 	addDoors(car);
 	makeConvertable(car);
 	addCarList(car);
-	//return car;
+}
+exports.decorateCar = function(car)
+{
+	decorateCar(car);
 }
 exports.showCar = function(req, res)
 {
 	var myCar = new car;
-	car.decorateCar(myCar);
+	decorateCar(myCar);
 	res.render('facade', {title: "Car decorated from facade pattern", car: myCar});
 }
