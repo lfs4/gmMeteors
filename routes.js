@@ -11,14 +11,13 @@ var Factory = require('./models/factory');
 var meteors = require('./controllers/meteors');
 var map = require('./controllers/map');
 var dec = require('./controllers/decorator.js');
-var facade = require('./controllers/facade.js')
-
+var facade = require('./controllers/facade.js');
 
 app.get('/', index.index);
 app.get('/meteors', meteors.findMeteors);
 app.get('/cars', cars.displayCar);
 app.get('/factory', fact.displayVehicle);
- app.get('facade', facade.decorateCar)
+app.get('/facade', facade.showCar);
 app.get('/patterns', function(req,res){
     res.render('patterns',
     {

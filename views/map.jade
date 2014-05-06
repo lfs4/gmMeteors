@@ -1,0 +1,11 @@
+extends maps
+
+block content
+  form(action='/meteors', method='post')
+   p
+    label Search
+    br
+    input(type ='range', name='year' min="1801" max="2013")
+    br
+    input(type='submit')
+  div#map-canvas
