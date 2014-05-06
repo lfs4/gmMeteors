@@ -9,19 +9,45 @@ var fact = require('./controllers/factory');
 //var car = require('./models/car');
 var Factory = require('./models/factory');
 var meteors = require('./controllers/meteors');
-
+var map = require('./controllers/map');
+var dec = require('./controllers/decorator.js');
+var facade = require('./controllers/facade.js')
 
 
 app.get('/', index.index);
 app.get('/meteors', meteors.findMeteors);
 app.get('/cars', cars.displayCar);
 app.get('/factory', fact.displayVehicle);
+ app.get('facade', facade.decorateCar)
+app.get('/patterns', function(req,res){
+    res.render('patterns',
+    {
+        title: "Design Patterns"
+    });
+});
+//app.get('/map',map.initialize);
+app.get('/dec', dec.displayChanges);
+app.get('/map', function(req,res){
+    res.render('map', {
+        title: "Maps",
+        fs: {initialize: function(){
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+        }},
+       
+    });
+})
+
 
 app.post('/meteors', meteors.findMeteors);
 
 var factory = new Factory();
 
-var myTruck = factory.createVehicle({
+/*var myTruck = factory.createVehicle({
     vehicleType: "Truck",
     model: "jeep",
     year: 1563,
@@ -35,9 +61,9 @@ var myCar = factory.createVehicle({
      year: 1999,
      miles: 789
  });
-
-console.log(myCar);
-console.log(myTruck);
+*/
+// console.log(myCar);
+// console.log(myTruck);
 /*var myCar = new car("ford", 45, 78);
 console.log(myCar);
 console.log(myCar.mySpecs());*/
