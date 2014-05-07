@@ -1,7 +1,7 @@
       
 var infoWindow = null;
-var markers = [];
 
+var markers = [];
 function initialize() {
   var localdata = JSON.parse($("#localdata").val());
   var mapOptions = {
@@ -10,18 +10,18 @@ function initialize() {
   };
   var map = new google.maps.Map(document.getElementById("map-canvas"),
       mapOptions);
-
   infoWindow = new google.maps.InfoWindow({
     content: "stuff"
   });
   var i;
   //var myLatLang = new google.maps.LatLng(-25.363882,131.044922);
-  for(i = 0; i < 20; i++){
+  for(i = 0; i < localdata.length; i++){
 /*      setTimeout(function(){
         addMeteor(i);
       }, i * 200 );*/
       addMeteor(i);
   }
+
   function addMeteor(index)
   {
         var meteor = localdata[index];
@@ -36,8 +36,9 @@ function initialize() {
           animation: google.maps.Animation.DROP,
           clickable: true,
           title: meteor.name,
-          icon: '../images/meteor.png',
+          //icon: '../images/meteor.png',
         });
+        markers.push(marker);
       google.maps.event.addListener(marker, 'click', function(){
         var content = '<div id="content">' + 
         '<p><b>' + this.title + '</b></p>' + 
@@ -54,9 +55,11 @@ function initialize() {
         infoWindow.setContent(content);
         infoWindow.open(map, this);
       });
+      
   }
   $('#meteorCount').text("Results " + i);
   $('#localdata').remove();
+  var markerCluster = new MarkerClusterer(map, markers);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
