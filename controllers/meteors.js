@@ -11,3 +11,13 @@ exports.findMeteors = function(req, res){
 		});
 	});
 }
+
+exports.meteorMap = function(req, res){
+	var year = req.body['year'] || 1984
+	Meteor.find({year: year}, function(err, meteors){
+		res.render('map', {
+			title: "Meteors from " + year,
+			meteors: meteors
+		});
+	});
+}

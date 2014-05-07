@@ -1,11 +1,14 @@
 extends maps
 
 block content
-  form(action='/meteors', method='post')
+  h1= title
+  form(action='/map', method='post')
    p
     label Search
     br
     input(type ='range', name='year' min="1801" max="2013")
     br
     input(type='submit')
+  - local_data = JSON.stringify(meteors)
+  input(type='hidden', value=local_data)#localdata
   div#map-canvas

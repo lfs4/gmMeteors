@@ -26,21 +26,13 @@ app.get('/patterns', function(req,res){
 });
 //app.get('/map',map.initialize);
 app.get('/dec', dec.displayChanges);
-app.get('/map', function(req,res){
-    res.render('map', {
-        title: "Maps",
-        fs: {initialize: function(){
-        var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-        }},
-       
-    });
-})
-
+// app.get('/map', function(req,res){
+//     res.render('map', {
+//         title: "Maps",
+//         test: {test: "test data", butts: "butts"},
+//     });
+// })
+app.get('/map', meteors.meteorMap);
 
 app.post('/meteors', meteors.findMeteors);
 
