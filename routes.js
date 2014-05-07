@@ -33,6 +33,7 @@ app.get('/dec', dec.displayChanges);
 //     });
 // })
 app.get('/map', meteors.meteorMap);
+app.post('/map', meteors.meteorMap);
 
 app.post('/meteors', meteors.findMeteors);
 
