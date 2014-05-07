@@ -14,8 +14,9 @@ function initialize() {
   infoWindow = new google.maps.InfoWindow({
     content: "stuff"
   });
+  var i
   //var myLatLang = new google.maps.LatLng(-25.363882,131.044922);
-  for(var i = 0; i < 20; i++){
+  for(i = 0; i < 20; i++){
         var meteor = localdata[i];
       	var myLatLang = new google.maps.LatLng(meteor.latitude, meteor.longitude);
         var marker = new google.maps.Marker({
@@ -27,16 +28,28 @@ function initialize() {
         	map: map,
         	animation: google.maps.Animation.DROP,
           clickable: true,
-        	title: "Hello World"
+        	title: meteor.name,
         });
       google.maps.event.addListener(marker, 'click', function(){
-        console.log(this.classification);
+        var content = '<div id="content">' + 
+        '<p><b>' + this.title + '</b></p>' + 
+        '<div id = "bodyContent">' + 
+        '<p> Year: ' + this.year +
+        '<br>Classification: ' + this.classification +
+        '<br>Mass: ' + this.mass +
+        '<br>Fell or Found: ' + this.fell +
+        '<br>Position: ' + this.position +
+        '</p>' + 
+        '</div>' + 
+        '</div>'; 
+        //this.year + " " + this.mass + " " + this.position + " " + this.fell;
+        infoWindow.setContent(content);
+        infoWindow.open(map, this);
       });
+
   }
+  console.log(i);
   $('#localdata').remove();
-  google.maps.event.addListener(marker, 'click', function(){
-    console.log(marker.classification);
-  });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
