@@ -14,21 +14,29 @@ function initialize() {
   infoWindow = new google.maps.InfoWindow({
     content: "stuff"
   });
-  var i
+  var i;
   //var myLatLang = new google.maps.LatLng(-25.363882,131.044922);
   for(i = 0; i < 20; i++){
-        var meteor = localdata[i];
-      	var myLatLang = new google.maps.LatLng(meteor.latitude, meteor.longitude);
+/*      setTimeout(function(){
+        addMeteor(i);
+      }, i * 200 );*/
+      addMeteor(i);
+  }
+  function addMeteor(index)
+  {
+        var meteor = localdata[index];
+        var myLatLang = new google.maps.LatLng(meteor.latitude, meteor.longitude);
         var marker = new google.maps.Marker({
           classification: meteor.classification,
           year: meteor.year,
           mass: meteor.mass,
           fell: meteor.fall,
-        	position: myLatLang,
-        	map: map,
-        	animation: google.maps.Animation.DROP,
+          position: myLatLang,
+          map: map,
+          animation: google.maps.Animation.DROP,
           clickable: true,
-        	title: meteor.name,
+          title: meteor.name,
+          icon: '../images/meteor.png',
         });
       google.maps.event.addListener(marker, 'click', function(){
         var content = '<div id="content">' + 
@@ -46,9 +54,8 @@ function initialize() {
         infoWindow.setContent(content);
         infoWindow.open(map, this);
       });
-
   }
-  console.log(i);
+  $('#meteorCount').text("Results " + i);
   $('#localdata').remove();
 }
 
