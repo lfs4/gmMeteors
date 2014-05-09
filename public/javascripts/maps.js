@@ -46,7 +46,7 @@ function initialize() {
         '<div id = "bodyContent">' + 
         '<p> Year: ' + this.year +
         '<br>Classification: ' + this.classification +
-        '<br>Mass: ' + this.mass + "grams" + 
+        '<br>Mass: ' + this.mass + " grams" + 
         '<br>Fell or Found: ' + this.fell +
         '<br>Position: ' + this.position +
         '</p>' + 
