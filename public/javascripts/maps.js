@@ -39,6 +39,13 @@ function initialize() {
           clickable: true,
           title: meteor.name,
           icon: '../images/meteor.png',
+          /*icon: new google.maps.MarkerImage(
+            '../images/meteor.png', // my 16x48 sprite with 3 circular icons
+            new google.maps.Size(scaleFactor, scaleFactor), // desired size
+            new google.maps.Point(0, scaleFactor), // offset within the scaled sprite
+            new google.maps.Point(scaleFactor/2, scaleFactor/2), // anchor point is half of the desired size
+            new google.maps.Size(16*scaleFactor, 1.5*scaleFactor) // scaled size of the entire sprite
+           )*/
         });
       google.maps.event.addListener(marker, 'click', function(){
         var content = '<div id="content">' + 
