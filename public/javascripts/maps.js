@@ -2,6 +2,7 @@
 var infoWindow = null;
 
 var markers = [];
+var results = 0;
 function initialize() {
   var localdata = JSON.parse($("#localdata").val());
   var mapOptions = {
@@ -13,13 +14,14 @@ function initialize() {
   infoWindow = new google.maps.InfoWindow({
     content: "stuff"
   });
-  var i;
+
   //var myLatLang = new google.maps.LatLng(-25.363882,131.044922);
-  for(i = 0; i < localdata.length; i++){
+  for( var i = 0; i < localdata.length; i++){
 /*      setTimeout(function(){
         addMeteor(i);
       }, i * 200 );*/
       addMeteor(i);
+      results++;
   }
 
   function addMeteor(index)
@@ -33,12 +35,11 @@ function initialize() {
           fell: meteor.fall,
           position: myLatLang,
           map: map,
-          animation: google.maps.Animation.DROP,
+          //animation: google.maps.Animation.DROP,
           clickable: true,
           title: meteor.name,
           //icon: '../images/meteor.png',
         });
-        markers.push(marker);
       google.maps.event.addListener(marker, 'click', function(){
         var content = '<div id="content">' + 
         '<p><b>' + this.title + '</b></p>' + 
@@ -55,11 +56,13 @@ function initialize() {
         infoWindow.setContent(content);
         infoWindow.open(map, this);
       });
+      markers.push(marker);
       
   }
-  $('#meteorCount').text("Results " + i);
+  $('#meteorCount').text("Results " + results);
   $('#localdata').remove();
-  var markerCluster = new MarkerClusterer(map, markers);
+  var mcOptions = {maxZoom: 18, minimumClusterSize: 30};
+  var markerCluster = new MarkerClusterer(map, markers, mcOptions);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
