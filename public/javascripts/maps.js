@@ -38,7 +38,7 @@ function initialize() {
           //animation: google.maps.Animation.DROP,
           clickable: true,
           title: meteor.name,
-          //icon: '../images/meteor.png',
+          icon: '../images/meteor.png',
         });
       google.maps.event.addListener(marker, 'click', function(){
         var content = '<div id="content">' + 
@@ -46,7 +46,7 @@ function initialize() {
         '<div id = "bodyContent">' + 
         '<p> Year: ' + this.year +
         '<br>Classification: ' + this.classification +
-        '<br>Mass: ' + this.mass +
+        '<br>Mass: ' + this.mass + "grams" + 
         '<br>Fell or Found: ' + this.fell +
         '<br>Position: ' + this.position +
         '</p>' + 
