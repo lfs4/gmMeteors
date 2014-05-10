@@ -28,6 +28,25 @@ function initialize() {
   {
         var meteor = localdata[index];
         var myLatLang = new google.maps.LatLng(meteor.latitude, meteor.longitude);
+        
+        var imageSize = 32;
+        var scaleFactor = meteor.mass / 13240;
+
+        //Left out but can be used to reduce the scaling baised on size
+        //scaleFactor = ((scaleFactor-1)/2)+1;
+        
+        if (scaleFactor > 1.3)
+          scaleFactor = 1.3;
+        else if (scaleFactor < 0.5)
+          scaleFactor = 0.5;
+
+        var image = new google.maps.MarkerImage(
+        '../images/meteor.png',
+        new google.maps.Size(imageSize * scaleFactor, imageSize * scaleFactor),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(imageSize/2 * scaleFactor, imageSize/2 * scaleFactor),
+        new google.maps.Size(imageSize * scaleFactor, imageSize * scaleFactor));
+
         var marker = new google.maps.Marker({
           classification: meteor.classification,
           year: meteor.year,
@@ -38,14 +57,7 @@ function initialize() {
           //animation: google.maps.Animation.DROP,
           clickable: true,
           title: meteor.name,
-          icon: '../images/meteor.png',
-          /*icon: new google.maps.MarkerImage(
-            '../images/meteor.png', // my 16x48 sprite with 3 circular icons
-            new google.maps.Size(scaleFactor, scaleFactor), // desired size
-            new google.maps.Point(0, scaleFactor), // offset within the scaled sprite
-            new google.maps.Point(scaleFactor/2, scaleFactor/2), // anchor point is half of the desired size
-            new google.maps.Size(16*scaleFactor, 1.5*scaleFactor) // scaled size of the entire sprite
-           )*/
+          icon: image,
         });
       google.maps.event.addListener(marker, 'click', function(){
         var content = '<div id="content">' + 
