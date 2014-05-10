@@ -40,6 +40,10 @@ function initialize() {
         else if (scaleFactor < 0.5)
           scaleFactor = 0.5;
 
+        var anim = null;
+
+        if(meteor.fall == "Fell")
+            anim = google.maps.Animation.DROP;
         var image = new google.maps.MarkerImage(
         '../images/meteor.png',
         new google.maps.Size(imageSize * scaleFactor, imageSize * scaleFactor),
@@ -54,7 +58,7 @@ function initialize() {
           fell: meteor.fall,
           position: myLatLang,
           map: map,
-          //animation: google.maps.Animation.DROP,
+          animation: anim,//google.maps.Animation.DROP,
           clickable: true,
           title: meteor.name,
           icon: image,
