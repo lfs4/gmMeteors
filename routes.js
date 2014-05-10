@@ -13,18 +13,8 @@ var map = require('./controllers/map');
 var dec = require('./controllers/decorator.js');
 var facade = require('./controllers/facade.js');
 var subject = require('./controllers/subject.js');
+var mediator = require('./controllers/mediator.js');
 
-
-var sb = require('./models/subject.js');
-var ob = require('./models/observer.js');
-
-var bob = new ob("bob");
-
-sbb = new sb;
-
-sbb.addObserver(bob);
-sbb.notify({email: 'Hello everyone'});
-console.log(sbb.observers.observerList);
 
 
 app.get('/', index.index);
@@ -33,6 +23,7 @@ app.get('/cars', cars.displayCar);
 app.get('/factory', fact.displayVehicle);
 app.get('/facade', facade.showCar);
 app.get('/observer', subject.renderObservers);
+app.get('/mediator', mediator.showSubjects);
 app.get('/patterns', function(req,res){
     res.render('patterns',
     {

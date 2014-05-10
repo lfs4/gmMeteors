@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  
+  h2 Sub1 Observers
+  ul
+   each ob in sub1.observerList
+    li
+     | Name: #{ob.name}
+
+  h2 Sub2 Observers
+  ul
+   each ob in sub2.observerList
+    li
+     | Name: #{ob.name}
