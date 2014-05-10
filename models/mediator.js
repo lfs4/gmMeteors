@@ -1,8 +1,5 @@
 var Subject = require('../models/subject.js');
 
-//sub1 = new subject;
-//sub2 = new subject;
-
 function Mediator(){
 	this.sub1 = new Subject;
 	this.sub2 = new Subject;
