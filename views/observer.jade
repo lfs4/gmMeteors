@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+   each observer in obs
+    li= observer.name
+     ul
+      li
+       | Email: #{observer.email}
+      li
+       | News: #{observer.news}
+      li
+       | Age: #{observer.age}
+

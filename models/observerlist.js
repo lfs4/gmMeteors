@@ -17,11 +17,11 @@ ObserverList.prototype.get = function(index){
 	}
 };
 
-ObserverList.prototype.indexOf = function(obj, startIndex){
-	var i = startIndex;
+ObserverList.prototype.indexOf = function(obj){
+	var i = 0;
 
 	while(i < this.observerList.length){
-		if(this.ObserverList[i] === obj){
+		if(this.observerList[i] === obj){
 			return i;
 		}
 		i++;

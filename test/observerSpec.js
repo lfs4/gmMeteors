@@ -67,6 +67,10 @@ describe("#Subject", function(){
 		subject.removeObserver(jim);
 		assert.equal(subject.observers.indexOf(jim), -1);
 	});
+	it("should add new fields to an observer", function(){
+		subject.decorate(bob, 45);
+		assert.equal(bob.sayAge(), "My age is 45");
+	});
 });
 
 
