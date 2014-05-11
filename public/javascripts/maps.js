@@ -64,6 +64,44 @@ function initialize() {
           icon: image,
         });
       google.maps.event.addListener(marker, 'click', function(){
+
+        map.setZoom(map.zoom + 2);
+        map.setCenter(marker.getPosition());
+
+        /*var content = '<div id="content">' + 
+        '<p><b>' + this.title + '</b></p>' + 
+        '<div id = "bodyContent">' + 
+        '<p> Year: ' + this.year +
+        '<br>Classification: ' + this.classification +
+        '<br>Mass: ' + this.mass + " grams" + 
+        '<br>Fell or Found: ' + this.fell +
+        '<br>Position: ' + this.position +
+        '</p>' + 
+        '</div>' + 
+        '</div>'; 
+        //this.year + " " + this.mass + " " + this.position + " " + this.fell;
+        infoWindow.setContent(content);
+        infoWindow.open(map, this);*/
+      });
+
+      /*google.maps.event.addListener(marker, 'dblclick', function(){
+
+        map.setZoom(8);
+
+        map.setCenter(marker.getPosition());
+
+      });*/
+
+    google.maps.event.addListener(marker, 'rightclick', function(){
+
+        map.setZoom(map.zoom - 2);
+
+        //map.setCenter(marker.getPosition());
+
+      });
+
+      google.maps.event.addListener(marker, 'mouseover', function(){
+
         var content = '<div id="content">' + 
         '<p><b>' + this.title + '</b></p>' + 
         '<div id = "bodyContent">' + 
@@ -79,6 +117,11 @@ function initialize() {
         infoWindow.setContent(content);
         infoWindow.open(map, this);
       });
+
+      google.maps.event.addListener(marker, 'mouseout', function(){
+        infoWindow.close();
+      });
+      
       markers.push(marker);
       
   }
