@@ -8,6 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+ var Meteor = require('./models/meteor.js');
 //var routes = require('./routes');
 /*var users = require('./routes/user');
 var meteors = require('./routes/meteors');
@@ -28,31 +29,55 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console,'connection error: '));
 
 db.once('open', function callback(){
-   /*
-    var meteorSchema = mongoose.Schema
-    ({
-        name: String,
-        classification: String,
-        mass: Number,
-        fall: String,
-        year: Number,
-        latitude: Number,
-        longitude: Number
-    })
 
-    var Meteor = mongoose.model('Meteor', meteorSchema)
+/*   var meteorSchema = mongoose.Schema({
+    name: String,
+    classification: String,
+    mass: Number,
+    fall: String,
+    year: Number,
+    latitude: Number,
+    longitude: Number
+})*/
 
-    Meteor.find({'year' : 1984}, function(err, meteors){
-            if(err) return console.error(err);
-            foreach(Meteor in meteors)
-            {
-                console.log(Meteor);
-            }
-            //var meteor = new()
-            //console.log();
-    })
-*/
+//var Meteor = mongoose.model('Meteor', meteorSchema)
+
+// Meteor.find(function(err, meteors){
+//          if(err) return console.error(err);
+//              console.log(meteors)
+// })
+
+ //Meteor.find({year: 1984}, callback)
+
+csv(records).from.stream(fs.createReadStream(__dirname + '/meteors.csv'), {
+    columns: true
 })
+    .on('record', function(row, index){
+    records.push(row);
+    var meteor = new Meteor({
+        name: row.name,
+        classification: row.recclass,
+        mass: row.mass,
+        fall: row.fall,
+        year: row.year,
+        latitude: row.reclat,
+        longitude: row.reclong
+    })
+
+    meteor.save(function(err,meteor){
+        if(err) return console.error(err);
+    });
+    console.log(meteor);
+    //console.log("Name: " + row.name + "Year: " + row.year + "Mass: " + row.mass);
+})
+    .on('end', function(count){
+        console.log("Number of lines: " + count);
+
+    
+});
+
+
+});
 /*
 
 

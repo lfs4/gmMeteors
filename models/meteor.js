@@ -13,4 +13,4 @@ var meteorSchema = new Schema
         longitude: Number
     });
 
- mongoose.model('Meteor', meteorSchema);
+ module.exports = mongoose.model('Meteor', meteorSchema);
